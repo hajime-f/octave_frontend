@@ -1,5 +1,4 @@
-import { createApp } from 'vue'
-
+import Vue from 'vue'
 // BootstrapVue
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
@@ -14,7 +13,7 @@ Vue.config.productionTip = process.env.NODE_ENV === 'production'
 Vue.use(BootstrapVue)
 
 new Vue({
-    router,
-    store,
-    render: h=> h(App),
+  router,
+  store,
+  render: h => h(App),
 }).$mount('#app')

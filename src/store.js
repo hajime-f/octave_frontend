@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import Vuex from 'vuex'
 import api from '@/services/api'
 
@@ -6,98 +6,134 @@ Vue.use(Vuex)
 
 // 認証情報
 const authModule = {
-    strict: process.env.NODE_ENV !== 'production',
-    namespaced: true,
-    state: {
-	email: '',
-	isLoggedIn: false
+  strict: process.env.NODE_ENV !== 'production',
+  namespaced: true,
+  state: {
+    email: '',
+    isLoggedIn: false
+  },
+  getters: {
+    email: state => state.email,
+    isLoggedIn: state => state.isLoggedIn
+  },
+  mutations: {
+    set (state, payload) {
+      state.email = payload.user.email
+      state.isLoggedIn = true
     },
-    getters: {
-	email: state => state.email,
-	isLoggedIn: state => state.isLoggedIn
-    },
-    mutations: {
-	set (state, payload) {
-	    state.email = payload.user.email
-	    state.isLoggedIn = true
-	},
-	clear (state) {
-	    state.email = '',
-	    state.isLoggedIn = false
-	}
-    },
-    actions: {
-	login (context, payload) {
-	    return api.post('/apiv1/auth/login/', {
-		'email': payload.email,
-		'password': payload.password
-	    })
-		.then(response => {
-		    localStorage.setItem('access', response.data.access)
-		    return context.dispatch('reload')
-			.then(user => user)
-		})
-	},
-	logout (context) {
-	    localStorage.removeItem('access')
-	    context.commit('clear')
-	}
+    clear (state) {
+      state.email = ''
+      state.isLoggedIn = false
     }
+  },
+  actions: {
+    /**
+     * ログイン
+     */
+    login (context, payload) {
+      return api.post('/apiv1/login/', {
+        'email': payload.email,
+        'password': payload.password
+      })
+        .then(response => {
+          // 認証用トークンをlocalStorageに保存
+          localStorage.setItem('access', response.data.access)
+          // ユーザー情報を取得してstoreのユーザー情報を更新
+          return context.dispatch('reload')
+        })
+    },
+    /**
+     * ログアウト
+     */
+    logout (context) {
+      // 認証用トークンをlocalStorageから削除
+      localStorage.removeItem('access')
+      // storeのユーザー情報をクリア
+      context.commit('clear')
+    },
+    /**
+     * ユーザー情報更新
+     */
+    reload (context) {
+      return api.get('/auth/users/me/')
+        .then(response => {
+          const user = response.data
+          // storeのユーザー情報を更新
+          context.commit('set', { user: user })
+          return user
+        })
+    }
+  }
 }
 
+// グローバルメッセージ
 const messageModule = {
-    strict: process.env.NODE_ENV !== 'production',
-    namespaced: true,
-    state: {
-	error: '',
-	warnings: [],
-	info: ''
+  strict: process.env.NODE_ENV !== 'production',
+  namespaced: true,
+  state: {
+    error: '',
+    warnings: [],
+    info: ''
+  },
+  getters: {
+    error: state => state.error,
+    warnings: state => state.warnings,
+    info: state => state.info
+  },
+  mutations: {
+    set (state, payload) {
+      if (payload.error) {
+        state.error = payload.error
+      }
+      if (payload.warnings) {
+        state.warnings = payload.warnings
+      }
+      if (payload.info) {
+        state.info = payload.info
+      }
     },
-    getters: {
-	error: state => state.error,
-	warnings: state => state.warnings,
-	info: state => state.info
-    },
-    mutations: {
-	set (state, payload) {
-	    if (payload.error) {
-		state.error = payload.error
-	    }
-	    if (payload.warnings) {
-		state.warnings = payload.warnings
-	    }
-	    if (payload.info) {
-		state.info = payload.info
-	    }
-	},
-	clear (state) {
-	    state.info = payload.info
-	}
-    },
-    actions: {
-	setErrorMessage (context, payload) {
-	    context.commit('clear')
-	    context.commit('set', { 'error': payload.message })
-	},
-	setWarningMessages (context, payload) {
-	    context.commit('clear')
-	    context.commit('set', { 'warnings': payload.messages })
-	},
-	setInfoMessage (context, payload) {
-	    context.commit('clear')
-	    context.commit('set', { 'info': payload.message })
-	},
-	clearMessages (context) {
-	    context.commit('clear')
-	}
+    clear (state) {
+      state.error = ''
+      state.warnings = []
+      state.info = ''
     }
+  },
+  actions: {
+    /**
+     * エラーメッセージ表示
+     */
+    setErrorMessage (context, payload) {
+      context.commit('clear')
+      context.commit('set', { 'error': payload.message })
+    },
+    /**
+     * 警告メッセージ（複数）表示
+     */
+    setWarningMessages (context, payload) {
+      context.commit('clear')
+      context.commit('set', { 'warnings': payload.messages })
+    },
+    /**
+     * インフォメーションメッセージ表示
+     */
+    setInfoMessage (context, payload) {
+      context.commit('clear')
+      context.commit('set', { 'info': payload.message })
+    },
+    /**
+     * 全メッセージ削除
+     */
+    clearMessages (context) {
+      context.commit('clear')
+    }
+  }
 }
 
 const store = new Vuex.Store({
-    modules: {
-	auth: authModule,
-	message: messageModule
-    }
+  modules: {
+    auth: authModule,
+    message: messageModule
+  }
 })
 
 export default store
