@@ -9,20 +9,20 @@ const authModule = {
   strict: process.env.NODE_ENV !== 'production',
   namespaced: true,
   state: {
-    email: '',
+    username: '',
     isLoggedIn: false
   },
   getters: {
-    email: state => state.email,
+    username: state => state.username,
     isLoggedIn: state => state.isLoggedIn
   },
   mutations: {
     set (state, payload) {
-      state.email = payload.user.email
+      state.username = payload.user.username
       state.isLoggedIn = true
     },
     clear (state) {
-      state.email = ''
+      state.username = ''
       state.isLoggedIn = false
     }
   },
@@ -31,8 +31,8 @@ const authModule = {
      * ログイン
      */
     login (context, payload) {
-      return api.post('/apiv1/login/', {
-        'email': payload.email,
+      return api.post('/auth/jwt/create/', {
+        'username': payload.username,
         'password': payload.password
       })
         .then(response => {

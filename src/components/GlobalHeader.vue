@@ -5,7 +5,7 @@
       <a class="navbar-brand" href="/">DRF Sample</a>
       <b-navbar-nav class="ml-auto" v-if="$route.meta.requiresAuth">
         <b-nav-item-dropdown right v-if="isLoggedIn">
-          <template slot="button-content">{{ email }}</template>
+          <template slot="button-content">{{ username }}</template>
           <b-dropdown-item href="#" @click="clickLogout">ログアウト</b-dropdown-item>
         </b-nav-item-dropdown>
         <b-nav-item href="#" @click="clickLogin" v-else>ログイン</b-nav-item>
@@ -17,8 +17,8 @@
 <script>
   export default {
     computed: {
-      email: function () {
-        return this.$store.getters['auth/email']
+      username: function () {
+        return this.$store.getters['auth/username']
       },
       isLoggedIn: function () {
         return this.$store.getters['auth/isLoggedIn']

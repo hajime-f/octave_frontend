@@ -10,7 +10,7 @@
         <div class="row form-group">
           <label class="col-sm-3 col-form-label">ユーザー名</label>
           <div class="col-sm-8">
-            <b-form-input type="text" v-model="form.email" required/>
+            <b-form-input type="text" v-model="form.username" required/>
           </div>
         </div>
         <div class="row form-group">
@@ -41,7 +41,7 @@
     data () {
       return {
         form: {
-          email: '',
+          username: '',
           password: ''
         }
       }
@@ -51,7 +51,7 @@
       submitLogin: function () {
         // ログイン
         this.$store.dispatch('auth/login', {
-          email: this.form.email,
+          username: this.form.username,
           password: this.form.password
         })
           .then(() => {
