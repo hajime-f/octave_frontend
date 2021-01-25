@@ -4,7 +4,7 @@
       <div class="siteHeader__wrapper">
         <div class="siteHeader__nav-group">
           <a href="/" class="siteHeader__logo">
-            <img alt="Octave" src="@/assets/octave_logo.png" />
+            <h1><img alt="Octave" src="@/assets/octave_logo.png"></h1>
           </a>
         </div>
         <div class="siteHeader__nav-group">
