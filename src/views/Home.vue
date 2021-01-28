@@ -1,19 +1,19 @@
 <template>
   <section class="sectionBuilder no-padding masthead">
     <div class="container -wide">
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <Top__without_login/>
     </div>
   </section>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Top__without_login from '@/components/Top__without_login.vue'
 
 export default {
-  name: 'Home',
+  name: 'Top__without_login',
   components: {
-    HelloWorld
+    Top__without_login
   }
 }
 </script>
