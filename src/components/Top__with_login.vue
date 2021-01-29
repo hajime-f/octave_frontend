@@ -1,13 +1,13 @@
 <template>
   <div class="hello">
-    <h2>without_login</h2>
+    <h2>with_login</h2>
 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Top__without_login',
+  name: 'Top__with_login',
 }
 </script>
 
