@@ -9,7 +9,6 @@
 <script>
 // @ is an alias to /src
 import Top__without_login from '@/components/Top__without_login.vue'
-import Top__with_login from '@/components/Top__with_login.vue'
 
 export default {
   name: 'Top__without_login',
