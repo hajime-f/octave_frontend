@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h2>without_login</h2>
+    <h2>楽しかった練習を大きな舞台の上に</h2>
 
   </div>
 </template>

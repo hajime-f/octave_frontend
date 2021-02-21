@@ -2,7 +2,7 @@
   <header class="siteHeader">
     <div class="siteHeader__row">
       <div class="siteHeader__nav_group">
-        <h1 class="siteHeader__logo"><img alt="Octave" src="@/assets/octave_logo.png"></h1>
+        <h1 class="siteHeader__logo"><img alt="Octave" src="@/assets/img/octave_logo.png"></h1>
       </div>
       <div class="siteHeader__nav_group">
         <nav class="horizontalNavigation">
