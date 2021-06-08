@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h2>Login</h2>
-
+    test
   </div>
 </template>
 

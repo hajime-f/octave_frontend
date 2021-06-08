@@ -1,7 +1,7 @@
 <template>
-  <div class="hello">
+  <div>
     <h2>楽しかった練習を大きな舞台の上に</h2>
-
+    testtestee
   </div>
 </template>
 
