@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>楽しかった練習を大きな舞台の上に</h2>
-    testtestee
+    <h2>楽団の運営を楽にする</h2>
+    testtestee江eee
   </div>
 </template>
 
