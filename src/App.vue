@@ -2,19 +2,17 @@
   <div id="app">
     <GlobalHeader/>
     <router-view/>
-    <Top__without_login/>
     <GlobalFooter/>
   </div>
 </template>
 
 <script>
   import GlobalHeader from "@/components/GlobalHeader"
-  import Top__without_login from "@/components/Top__without_login"
   import GlobalFooter from "@/components/GlobalFooter"
   
   export default {
   name: 'app',
-  components: {GlobalHeader, Top__without_login, GlobalFooter}
+  components: {GlobalHeader, GlobalFooter}
   }
 </script>
 

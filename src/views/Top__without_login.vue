@@ -1,22 +1,10 @@
 <template>
-  <section>
-    <div>
-      <Top__without_login/>
-      testtest
-    </div>
-  </section>
+  testtest
 </template>
 
 <script>
 // @ is an alias to /src
-import Top__without_login from '@/components/Top__without_login.vue'
 
-export default {
-  name: 'Top__without_login',
-  components: {
-    Top__without_login
-  }
-}
 </script>
 
 <style scoped>
