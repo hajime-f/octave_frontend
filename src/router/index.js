@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Top__without_login from '../views/Top__without_login.vue'
-import Login from '../views/Login.vue'
+import Top__without_login from '@/views/Top__without_login.vue'
+import Login from '@/views/Login.vue'
 
 const routes = [
     {

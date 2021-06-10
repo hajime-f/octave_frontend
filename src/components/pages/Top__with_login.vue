@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <h2>with_login</h2>
 
   </div>
