@@ -1,19 +1,47 @@
 <template>
   <header>
-    <h1><img alt="Octave" src="@/assets/img/octave_logo.png"></h1>
-    <nav>
-      <ul>
-        <li><router-link to="/login">Home</router-link></li> |
-        <li><router-link to="/about">About</router-link></li>
-      </ul>
-    </nav>
+    <v-app-bar app dark>
+      <v-toolbar-title>
+        <v-img alt="Octave" src="@/assets/img/octave_logo.png"></v-img>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn outlined sm="4">ログイン</v-btn>
+      <v-btn color="light-green" sm="4">無料で始める</v-btn>
+      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+    </v-app-bar>
+    <v-navigation-drawer v-model="drawer" fixed temporary app right>
+      <v-container>
+        <v-list nav dense>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>HOME</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>ABOUT</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item>
+            <v-list-item-content>
+              <v-list-item-title>ログイン</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-container>
+    </v-navigation-drawer>
   </header>
 </template>
 
 <script>
-    export default {
-        name: 'site-header',
-    }
+  export default {
+      data () {
+          return {
+              drawer: null
+          }
+      }
+  }
+ 
 </script>
 
 <style scoped>
